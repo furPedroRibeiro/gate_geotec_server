@@ -6,6 +6,15 @@ const port = process.env.PORT || 4000;
 
 const app = express()
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://portaomatadouro.vercel.app");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 const corsOptions = {
   origin: 'https://portaomatadouro.vercel.app',
   optionsSuccessStatus: 200,
