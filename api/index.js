@@ -28,7 +28,7 @@ app.get('/funcionamento', (req, res) => {
 })
 
 app.post('/funcionamento', (req) => {
-  const newStatus = { funcionando: req.body.funcionando, horario:  req.body.horario};
+  const newStatus = req.body;
   const filePath = './status.json'
   const encoding = 'utf-8'
   const data = fs.readFileSync(filePath, encoding)
