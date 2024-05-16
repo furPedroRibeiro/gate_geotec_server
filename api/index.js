@@ -2,6 +2,7 @@ const fs = require('fs')
 const bodyParser = require('body-parser')
 const express = require('express')
 const cors = require('cors');
+const port = process.env.PORT || 4000;
 
 const app = express()
 
@@ -38,6 +39,6 @@ app.post('/funcionamento', (req) => {
   fs.writeFileSync(filePath, statusString, encoding)
 })
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("Servidor ta on, aiiii")
 })
