@@ -1,16 +1,16 @@
-const fs = require('fs');
+const fs = require('fs')
 const bodyParser = require('body-parser')
 const express = require('express')
+const cors = require('cors');
+
 const app = express()
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://portaomatadouro.vercel.app");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+const corsOptions = {
+  origin: 'https://portaomatadouro.vercel.app',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json())
 
