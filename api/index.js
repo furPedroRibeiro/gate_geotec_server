@@ -15,13 +15,6 @@ app.use((req, res, next) => {
   next();
 });
 
-const corsOptions = {
-  origin: 'https://portaomatadouro.vercel.app',
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
 app.use(bodyParser.json())
 
 app.get('/funcionamento', (req, res) => {
@@ -37,7 +30,7 @@ app.get('/funcionamento', (req, res) => {
   return res.json(status)
 })
 
-app.post('/funcionamento', (req) => {
+app.post('/funcionamento', (req, res) => {
   const newStatus = req.body
   const filePath = './status.json'
   const encoding = 'utf-8'
@@ -46,6 +39,7 @@ app.post('/funcionamento', (req) => {
   const newData = [...status, newStatus]
   const statusString = JSON.stringify(newData, null, 2)
   fs.writeFileSync(filePath, statusString, encoding)
+  return res(statusString)
 })
 
 app.listen(port, () => {
