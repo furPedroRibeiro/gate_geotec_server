@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 
 app.get('/funcionamento', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://portaomatadouro.vercel.app');
+  res.set('Access-Control-Allow-Origin', 'https://portaomatadouro.vercel.app/');
   let status
   try {
     const data = fs.readFileSync('./status.json', 'utf-8')
@@ -30,7 +30,7 @@ app.get('/funcionamento', (req, res) => {
 })
 
 app.post('/funcionamento', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://portaomatadouro.vercel.app');
+  res.set('Access-Control-Allow-Origin', 'https://portaomatadouro.vercel.app/');
   const filePath = './status.json'
   const encoding = 'utf-8'
   const reqStatus = req.body.funcionando
