@@ -30,16 +30,15 @@ app.get('/funcionamento', (req, res) => {
   return res.json(status)
 })
 
-app.post('/funcionamento', (req, res) => {
-  const newStatus = req.body
+app.post('/funcionamento', (req) => {
   const filePath = './status.json'
   const encoding = 'utf-8'
+  const newStatus = req.body
   const data = fs.readFileSync(filePath, encoding)
-  const status = JSON.parse(data)
-  const newData = [...status, newStatus]
+  const oldStatus = JSON.parse(data)
+  const newData = [...oldStatus, {newStatus}]
   const statusString = JSON.stringify(newData, null, 2)
   fs.writeFileSync(filePath, statusString, encoding)
-  return res(statusString)
 })
 
 app.listen(port, () => {
