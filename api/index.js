@@ -30,7 +30,7 @@ app.get('/funcionamento', (req, res) => {
   return res.json(status)
 })
 
-app.post('/funcionamento', (req) => {
+app.post('/funcionamento', (req, res) => {
   const filePath = './status.json'
   const encoding = 'utf-8'
   const newStatus = req.body
@@ -39,6 +39,8 @@ app.post('/funcionamento', (req) => {
   const newData = [...oldStatus, {newStatus}]
   const statusString = JSON.stringify(newData, null, 2)
   fs.writeFileSync(filePath, statusString, encoding)
+  let ok = "ok"
+  return res(ok)
 })
 
 app.listen(port, () => {
